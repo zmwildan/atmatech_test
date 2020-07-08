@@ -21,16 +21,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["isAuthenticated", "loggedInUser"]),
   },
   methods: {
     async logout() {
-      await this.$auth.logout()
-      this.$router.push("/login")
+      await this.$auth.logout();
+      this.$router.push("/login");
     },
   },
-}
+};
 </script>

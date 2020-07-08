@@ -34,7 +34,7 @@ export default {
       username: "",
       password: "",
       error: null,
-    }
+    };
   },
 
   methods: {
@@ -45,11 +45,12 @@ export default {
             username: this.username,
             password: this.password,
           },
-        })
+        });
+        this.$router.push("/");
       } catch (e) {
-        this.error = e.response.data.message
+        this.error = e.response.data.message;
       }
     },
   },
-}
+};
 </script>
