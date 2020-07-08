@@ -21,6 +21,12 @@ export const mutations = {
       state.lists.splice(index, 1);
     }
   },
+  UPDATE_BOOK(state, response) {
+    const index = state.lists.findIndex((data) => data.id === response.id);
+    if (index !== -1) {
+      state.lists.splice(index, 1, response);
+    }
+  },
 };
 
 export const actions = {
@@ -38,6 +44,14 @@ export const actions = {
       .then((r) => r.data)
       .then((response) => {
         commit("CREATE_BOOK", response);
+      });
+  },
+  updateBook({ commit }, data) {
+    this.$axios
+      .put(`api/book/${data.id}`, data.formData)
+      .then((r) => r.data)
+      .then((response) => {
+        commit("UPDATE_BOOK", response);
       });
   },
   deleteBook({ commit }, id) {
