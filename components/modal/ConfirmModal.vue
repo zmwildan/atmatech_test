@@ -1,5 +1,5 @@
 <template>
-  <portal to="modal">
+  <portal v-if="isOpen" to="modal">
     <div
       class="modal show"
       tabindex="-1"
