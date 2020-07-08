@@ -56,12 +56,23 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     "@nuxtjs/axios",
     "@nuxtjs/auth",
+    "portal-vue/nuxt",
   ],
+  proxy: {
+    "/api": {
+      target: "http://linggar.asia:9555",
+      pathRewrite: {
+        "^/api": "/",
+      },
+      changeOrigin: true,
+    },
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
+    proxy: true,
     baseURL: "http://linggar.asia:9555",
   },
   auth: {
@@ -69,12 +80,12 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: "/auth/login",
+            url: "api/auth/login",
             method: "post",
             propertyName: "access_token",
           },
           user: {
-            url: "/users/me",
+            url: "api/users/me",
             method: "get",
             propertyName: false,
           },
@@ -88,4 +99,4 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
-}
+};
